@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Miguel Jairus Caraan | Portfolio 2026</title>
+  <meta name="description" content="Portfolio of Miguel Jairus Caraan, Digital Animation student at Jose Rizal University.">
+  <meta name="theme-color" content="#071a35">
+  <script>document.documentElement.classList.add('js');</script>
+  <style>
+/* ==========================================================================
+   Jairus Caraan Portfolio
+   Every desktop slide is a 2560x1440 poster scaled with container units (cqw),
+   so the layout matches the design at any screen width.
+   Below 820px the layout re-stacks for mobile.
+   FONTS: Helvetica Neue stack for all live text. The condensed display words
+   (PORTFOLIO, HOME, ABOUT, PROJECTS, CONTACTS, YEAR [04]) are your image
+   assets, so the original lettering is untouched.
+   ========================================================================== */
+
+:root{
+  --red:#f50000;
+  --navy:#071a35;
+  --paper:#f3f3f3;
+  --font:"Helvetica Neue",Helvetica,Arial,"Inter",sans-serif;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:#fff;color:var(--navy);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+img,svg,video{display:block}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ---------- slide base ---------- */
+.slide{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;container-type:inline-size;scroll-margin-top:0;background:#fff}
+.paper{
+  background-color:var(--paper);
+  background-image:url("assets/bg/paper-texture.jpg");
+  background-size:cover;background-position:center;
+}
+.layer{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none}
+.svgtxt{font-family:var(--font);font-weight:700;fill:var(--red)}
+.outline-txt{fill:none;stroke:var(--red);stroke-width:5;stroke-linejoin:miter}
+.o{fill:none;stroke:var(--red);stroke-width:3}
+.fill{width:100%;height:100%;object-fit:contain}
+.cover{object-fit:cover}
+
+/* ---------- image placeholder (created by script.js when a file is missing) ---------- */
+.ph{
+  display:flex;align-items:center;justify-content:center;text-align:center;
+  border:2px dashed rgba(90,90,90,.7);background:rgba(120,120,120,.18);color:#444;
+  font:700 max(8px,.8cqw)/1.15 var(--font);padding:.3cqw;overflow:hidden;word-break:break-all;
+}
+
+/* ---------- logo ---------- */
+.logo{position:absolute;display:block;transition:transform .35s}
+.logo:hover{transform:rotate(-8deg) scale(1.1)}
+.logo-home{left:93.4cqw;top:3.83cqw;width:2.6cqw;height:2.6cqw}
+.logo-about{left:93.4cqw;top:49.7cqw;width:2.6cqw;height:2.6cqw}
+.logo-works{left:93.4cqw;top:49.7cqw;width:2.6cqw;height:2.6cqw}
+.logo-projects{left:93.4cqw;top:49.7cqw;width:2.6cqw;height:2.6cqw}
+.logo-contacts{right:0;bottom:0;left:auto;top:auto;width:11.6cqw;height:11.7cqw}
+
+/* =============================== HOME =============================== */
+.home .band{position:absolute;left:0;right:0;top:44.9cqw;bottom:0;background:var(--navy)}
+.portrait{position:absolute;left:22.5cqw;bottom:0;width:31cqw;height:55cqw;object-fit:contain;object-position:bottom}
+.portfolio-title{position:absolute;left:62cqw;top:3.83cqw;width:7.5cqw;height:2.5cqw;object-fit:contain}
+.meta p{position:absolute;top:3.75cqw;font-size:1.12cqw;line-height:.82;font-weight:700;letter-spacing:-.03em;color:var(--navy);white-space:nowrap}
+.meta .m1{left:71.9cqw}
+.meta .m2{left:78cqw}
+.meta .m3{right:8.9cqw;text-align:right}
+.first-name,.last-name{position:absolute;top:32.9cqw;font-size:1.15cqw;font-weight:700;letter-spacing:-.04em;color:var(--red);line-height:1}
+.first-name{left:3.85cqw}
+.last-name{right:3.9cqw}
+
+.main-nav a{position:absolute;top:var(--y,46.6cqw);left:var(--x);height:7.7cqw;aspect-ratio:var(--ar);transition:transform .3s,filter .3s}
+.main-nav a:hover{transform:translateY(-.7cqw) scale(1.04);filter:brightness(1.15)}
+.n-home{--x:3.95cqw;--ar:.974}
+.n-about{--x:29cqw;--ar:1.18}
+.n-projects{--x:53.2cqw;--ar:1.857}
+.n-contacts{--x:80.2cqw;--ar:2.06}
+
+/* =============================== ABOUT ============================== */
+.top-band{position:absolute;left:0;right:0;top:0;height:7.2cqw;background:var(--navy)}
+.about-portrait{position:absolute;left:0;top:11.3cqw;width:41.8cqw;height:45cqw;object-fit:contain;object-position:left bottom}
+.names{position:absolute;left:0;top:3.1cqw;width:100%;height:auto;aspect-ratio:2560/340;pointer-events:none;z-index:2}
+
+.about h2{font-size:2.15cqw;line-height:1;font-weight:700;letter-spacing:-.045em;color:var(--navy)}
+.about-me{position:absolute;left:37.4cqw;top:21.2cqw;width:21.8cqw;z-index:3}
+.bio,.dont,.skills li{font-size:1.17cqw;line-height:.83;font-weight:700;letter-spacing:-.04em;color:var(--navy)}
+.bio{margin-top:4.5cqw;text-align:justify;line-height:.84}
+.dont{margin-top:2.1cqw}
+.year{position:absolute;left:0;top:15.8cqw;width:21.5cqw;height:7.8cqw;object-fit:contain;object-position:left}
+.skills{position:absolute;left:64.5cqw;top:21.2cqw;z-index:3}
+.skills ul{margin-top:4.5cqw}
+.skills li{line-height:1.31cqw;line-height:1.14}
+.tools h2{position:absolute;left:78.4cqw;top:21.2cqw;z-index:3}
+
+.tool{
+  position:absolute;left:var(--x);top:var(--y);width:var(--s);height:var(--s);object-fit:contain;
+  z-index:3;animation:float 3.4s ease-in-out infinite;animation-delay:var(--d,0s);
+  transition:transform .35s cubic-bezier(.3,1.6,.5,1),filter .3s;cursor:pointer;
+}
+.tool:hover{transform:scale(1.3) rotate(-10deg);filter:drop-shadow(0 .6cqw .8cqw rgba(0,0,0,.3))}
+@keyframes float{0%,100%{translate:0 0}50%{translate:0 -.7cqw}}
+
+/* =============================== WORKS ============================== */
+.works-title{position:absolute;right:0;top:0;width:33.8cqw;height:auto;overflow:visible}
+.marquee{position:absolute;left:0;right:0;top:12.5cqw;height:31cqw;overflow:hidden}
+.track{display:flex;width:max-content;height:100%;animation:scroll 45s linear infinite}
+.marquee:hover .track{animation-play-state:paused}
+.work{flex:none;width:23cqw;height:31cqw;margin-right:1.5cqw;overflow:hidden;background:#eee;transition:transform .4s}
+.work:hover{transform:scale(.97)}
+@keyframes scroll{to{transform:translateX(-50%)}}
+
+/* ============================== PROJECTS ============================ */
+.projects{aspect-ratio:auto;min-height:56.25vw;display:flex;flex-direction:column}
+.p-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6cqw;padding:3cqw 3.8cqw 0}
+.p-card{background:#fff;border:.15cqw solid var(--navy);padding:.9cqw .9cqw 1.1cqw;transition:transform .3s,box-shadow .3s}
+.p-card:hover{transform:translateY(-.5cqw);box-shadow:.5cqw .5cqw 0 var(--red)}
+.p-media{position:relative;aspect-ratio:16/9;background:#111;overflow:hidden}
+.p-media video{width:100%;height:100%;object-fit:cover}
+.p-media.missing::after{
+  content:"PUT VIDEO: " attr(data-path);position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  text-align:center;color:#fff;font:700 max(9px,.85cqw)/1.2 var(--font);padding:1cqw;background:rgba(0,0,0,.55);pointer-events:none;word-break:break-all;
+}
+.p-title{margin-top:.8cqw;font-size:1.35cqw;line-height:1;font-weight:700;letter-spacing:-.04em;color:var(--navy);text-transform:uppercase}
+.p-desc{margin-top:.4cqw;font-size:.95cqw;line-height:1.2;font-weight:600;letter-spacing:-.02em;color:var(--navy)}
+.projects-title{margin-top:auto;padding-top:3cqw;width:46.2cqw;height:auto;flex:none}
+.projects{position:relative}
+.projects .projects-title{margin-top:auto}
+.projects::before{content:"";display:block;height:0}
+
+/* ============================== CONTACTS ============================ */
+.c-band{position:absolute;left:0;right:0;top:50.2cqw;bottom:0;background:var(--navy)}
+.contacts h2{font-size:2.15cqw;line-height:1;font-weight:700;letter-spacing:-.045em;color:var(--navy)}
+.c-col{position:absolute;top:5cqw;z-index:2}
+.c-email{left:3.9cqw}
+.c-art{left:44.1cqw}
+.c-beh{left:81cqw}
+.c-link{display:block;font-size:1.1cqw;font-weight:700;letter-spacing:-.04em;line-height:1;color:var(--navy);margin-bottom:.9cqw;transition:color .25s}
+.c-link:hover{color:var(--red);text-decoration:underline}
+.c-email .c-link{margin-top:0}
+.c-email .c-link:first-of-type{margin-top:6.7cqw}
+.c-art .c-link,.c-beh .c-link{margin-top:6.7cqw;margin-left:-3.6cqw}
+.c-beh .c-link{margin-left:-3.9cqw}
+.qr{display:block;width:17.9cqw;height:17.9cqw;margin-top:1.9cqw;margin-left:-3.6cqw;transition:transform .3s}
+.c-beh .qr{margin-left:-4.3cqw}
+.qr:hover{transform:scale(1.04)}
+.contacts-title{position:absolute;left:0;bottom:0;width:76.4cqw;height:auto;pointer-events:none}
+
+/* ============================ ANIMATIONS ============================ */
+.js .reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease}
+.js .reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .track,.tool{animation:none}
+  .js .reveal{opacity:1;transform:none;transition:none}
+}
+
+/* ============================ TABLET ================================ */
+@media (max-width:1100px){
+  .p-grid{grid-template-columns:repeat(2,1fr)}
+}
+
+/* ============================== MOBILE ============================== */
+@media (max-width:820px){
+  .slide{aspect-ratio:auto}
+  .ph{font-size:10px}
+
+  /* ---- HOME ---- */
+  .home{aspect-ratio:100/152}
+  .home .band{top:112cqw}
+  .home .layer{top:5cqw;height:auto;aspect-ratio:16/9}
+  .portrait{left:18cqw;width:64cqw;height:118cqw}
+  .portfolio-title{left:4cqw;top:5cqw;width:34cqw;height:11cqw}
+  .logo-home{left:auto;right:4cqw;top:5cqw;width:9cqw;height:9cqw}
+  .meta p{top:22cqw;font-size:2.9cqw}
+  .meta .m1{left:4cqw}
+  .meta .m2{left:36cqw}
+  .meta .m3{right:4cqw}
+  .first-name,.last-name{top:75cqw;font-size:3.4cqw}
+  .first-name{left:4cqw}
+  .last-name{right:4cqw}
+  .main-nav a{height:11cqw}
+  .n-home{--x:6cqw;--y:119cqw}
+  .n-about{--x:52cqw;--y:119cqw}
+  .n-projects{--x:6cqw;--y:137cqw}
+  .n-contacts{--x:52cqw;--y:137cqw}
+
+  /* ---- ABOUT ---- */
+  .about{display:flex;flex-direction:column;padding-bottom:12cqw}
+  .top-band{height:4.1cqw}
+  .names{position:relative;top:0;flex:none}
+  .about-portrait{position:relative;left:0;top:0;width:78cqw;height:auto;aspect-ratio:1070/1150;margin-top:-2cqw}
+  .about-me,.skills,.tools{position:static;width:auto;padding:0 6cqw;margin-top:9cqw}
+  .about h2,.tools h2{font-size:7cqw;position:static}
+  .bio,.dont,.skills li{font-size:3.7cqw;line-height:1.08}
+  .bio{margin-top:4cqw}
+  .dont{margin-top:3cqw}
+  .skills ul{margin-top:4cqw}
+  .skills li{line-height:1.3}
+  .year{position:relative;top:0;width:62cqw;height:auto;aspect-ratio:549/200;margin-top:5cqw}
+  .tool-grid{display:flex;flex-wrap:wrap;gap:6cqw;margin-top:4cqw}
+  .tool{position:static;width:17cqw;height:17cqw}
+  .logo-about{left:auto;right:5cqw;top:auto;bottom:4cqw;width:9cqw;height:9cqw}
+
+  /* ---- WORKS ---- */
+  .works{min-height:cqw}
+  .works-title{width:62cqw}
+  .marquee{top:5000cqw;height:1000cqw}
+  .work{width:52cqw;height:70cqw;margin-right:4cqw}
+  .logo-works{left:auto;right:5cqw;top:auto;bottom:5cqw;width:9cqw;height:9cqw}
+
+  /* ---- PROJECTS ---- */
+  .projects{min-height:0}
+  .p-grid{grid-template-columns:1fr;gap:5cqw;padding:7cqw 6cqw 0}
+  .p-card{padding:2.5cqw 2.5cqw 3.5cqw;border-width:.6cqw}
+  .p-title{font-size:5.5cqw;margin-top:3cqw}
+  .p-desc{font-size:3.6cqw;margin-top:1.5cqw}
+  .projects-title{width:78cqw;padding-top:10cqw}
+  .logo-projects{left:auto;right:5cqw;top:auto;bottom:5cqw;width:9cqw;height:9cqw}
+
+  /* ---- CONTACTS ---- */
+  .contacts{display:flex;flex-direction:column;padding:8cqw 6cqw 40cqw;gap:9cqw}
+  .c-band{top:auto;height:22cqw}
+  .c-col{position:static}
+  .contacts h2{font-size:7cqw}
+  .c-link,.c-art .c-link,.c-beh .c-link{font-size:3.7cqw;margin:3cqw 0 0;word-break:break-all}
+  .c-email .c-link:first-of-type{margin-top:3cqw}
+  .qr,.c-beh .qr{width:56cqw;height:56cqw;margin:4cqw 0 0}
+  .contacts-title{width:78cqw}
+  .logo-contacts{width:18cqw;height:18cqw}
+}
+
+</style>
+</head>
+<body>
+
+<!-- =====================================================================
+     IMAGE GUIDE  (put every file in the "assets" folder, same names)
+     ---------------------------------------------------------------------
+     assets/bg/paper-texture.jpg      -> white paper texture background
+     assets/img/portrait-home.png     -> HOME black & white cut-out portrait (transparent PNG)
+     assets/img/portrait-about.png    -> ABOUT portrait with the red glitch
+     assets/img/logo.png              -> red geometric logo (used on every page)
+     assets/img/portfolio-title.png   -> the condensed "PORTFOLIO" wordmark
+     assets/img/year-04.png           -> the condensed "YEAR [04]" graphic
+     assets/nav/home.png | about.png | projects.png | contacts.png  -> condensed nav words
+     assets/tools/photoshop.png lightroom.png blender.png after-effects.png
+                  premiere.png fl-studio.png canva.png capcut.png
+     assets/works/work-01.jpg ... work-08.jpg   -> 2D illustrations
+     assets/thumbs/project-01.jpg ... 06.jpg    -> video posters
+     assets/videos/project-01.mp4 ... 06.mp4    -> video clips
+     assets/qr/artstation.png | behance.png     -> QR codes
+     Until a file exists, a dashed placeholder shows the path it expects.
+     ===================================================================== -->
+
+<h1 class="sr-only">Miguel Jairus Caraan - Digital Animation Portfolio 2026</h1>
+
+<!-- ============================== HOME ============================== -->
+<section id="home" class="slide home paper">
+  <div class="band"></div>
+
+  <!-- Layer 1: solid red name (behind the portrait) -->
+  <svg class="layer" viewBox="0 0 2560 1440" aria-hidden="true">
+    <text class="svgtxt" x="98" y="840" font-size="750" textLength="2364" lengthAdjust="spacingAndGlyphs">JAIRUS</text>
+  </svg>
+
+  <!-- PUT IMAGE: assets/img/portrait-home.png -->
+  <img class="portrait" src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/6c3ccf258524495.6af9b373b66f7.png" alt="PUT IMAGE: portrait-home.png (assets/img/)">
+
+  <!-- Layer 2: outlined name (in front of the portrait) -->
+  <svg class="layer" viewBox="0 0 2560 1440" aria-hidden="true">
+    <text class="svgtxt outline-txt" x="98" y="840" font-size="750" textLength="2364" lengthAdjust="spacingAndGlyphs">JAIRUS</text>
+  </svg>
+
+  <!-- PUT IMAGE: assets/img/portfolio-title.png -->
+  <img class="portfolio-title" src="https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/d8b9f7258524495.6af9b373b6b16.png" alt="PUT IMAGE: portfolio-title.png (assets/img/)">
+
+  <div class="meta">
+    <p class="m1">DIGITAL<br>2026<br></p>
+    <p class="m2">ANIMATION<br>&nbsp;<br>JOSE RIZAL</p>
+    <p class="m3">STUDENT<br>SHOWCASE<br>UNIVERSITY</p>
+  </div>
+
+  <a class="logo logo-home" href="#home" aria-label="Back to home">
+    <!-- PUT IMAGE: assets/img/logo.png -->
+    <img class="fill" src="https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/8deee5258524495.6af9b373b55a8.png" alt="PUT IMAGE: logo.png (assets/img/)">
+  </a>
+
+  <span class="first-name">MIGUEL</span>
+  <span class="last-name">CARAAN</span>
+
+  <nav class="main-nav" aria-label="Main navigation">
+    <!-- PUT IMAGES: assets/nav/home.png, about.png, projects.png, contacts.png -->
+    <a class="n-home"     href="#home"><img class="fill" src="https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/ab0694258524495.6af9b373b59c9.png" alt="PUT IMAGE: home.png (assets/nav/)"></a>
+    <a class="n-about"    href="#about"><img class="fill" src="https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/091adb258524495.6af9b373b6fa7.png" alt="PUT IMAGE: about.png (assets/nav/)"></a>
+    <a class="n-projects" href="#projects"><img class="fill" src="https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/596954258524495.6af9b373b754e.png" alt="PUT IMAGE: projects.png (assets/nav/)"></a>
+    <a class="n-contacts" href="#contacts"><img class="fill" src="https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/b29e72258524495.6af9b373b5101.png" alt="PUT IMAGE: contacts.png (assets/nav/)"></a>
+  </nav>
+</section>
+
+<!-- ============================== ABOUT ============================= -->
+<section id="about" class="slide about paper">
+  <div class="top-band"></div>
+
+  <!-- PUT IMAGE: assets/img/portrait-about.png -->
+  <img class="about-portrait" src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/09b2b8258524495.6af9b373b5e3c.png" alt="PUT IMAGE: portrait-about.png (assets/img/)">
+
+  <svg class="names" viewBox="0 80 2560 340" aria-hidden="true">
+    <text class="svgtxt" x="98"   y="250" font-size="202" textLength="662"  lengthAdjust="spacingAndGlyphs">MIGUEL</text>
+    <text class="svgtxt" x="435"  y="392" font-size="202" textLength="1075" lengthAdjust="spacingAndGlyphs"><tspan class="o">VILL</tspan>ANUEVA</text>
+    <text class="svgtxt" x="1543" y="250" font-size="202" textLength="617"  lengthAdjust="spacingAndGlyphs">JAIRUS</text>
+    <text class="svgtxt" x="1705" y="392" font-size="202" textLength="745"  lengthAdjust="spacingAndGlyphs">CARAAN</text>
+  </svg>
+
+  <div class="about-me reveal">
+    <h2>ABOUT ME</h2>
+    <p class="bio">I AM A DIGITAL ANIMATION TECHNOLOGY MAJOR STUDYING IN JOSE RIZAL UNIVERSITY BASED FROM THE PHILIPPINES. I ADAPT TO ANY MEDIUM GIVEN. I EXPLORE A LOT OF ART FORMS AVAILABLE.</p>
+    <p class="dont">DON'T STOP CREATING.</p>
+    <!-- PUT IMAGE: assets/img/year-04.png -->
+    <img class="year" src="https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/99a818258524495.6af9b373b62c1.png" alt="PUT IMAGE: year-04.png (assets/img/)">
+  </div>
+
+  <div class="skills reveal">
+    <h2>SKILLS</h2>
+    <ul>
+      <li>2D ILLUSTRATOR</li><li>GRAPHIC DESIGN</li><li>-</li>
+      <li>3D MODELLING</li><li>3D ANIMATION</li><li>-</li>
+      <li>PHOTOGRAPHY</li><li>VIDEOGRAPHY</li><li>-</li>
+      <li>COLOR GRADING</li><li>VIDEO EDITING</li><li>VFX</li><li>AUDIO DESIGN</li>
+    </ul>
+  </div>
+
+  <div class="tools">
+    <h2 class="reveal">TOOLS</h2>
+    <div class="tool-grid">
+      <!-- PUT IMAGES: assets/tools/*.png  (animated: floating + hover spin) -->
+      <img class="tool" style="--x:78.65cqw;--y:27.7cqw;--s:4.4cqw;--d:0s"    src="https://static.vecteezy.com/system/resources/thumbnails/055/982/095/small/rectangle-adobe-photoshop-icon-logo-symbol-free-png.png"     alt="PUT IMAGE: photoshop.png (assets/tools/)">
+      <img class="tool" style="--x:84.8cqw;--y:27.7cqw;--s:4.4cqw;--d:.35s"   src="https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b6/Adobe_Photoshop_Lightroom_CC_logo.svg/960px-Adobe_Photoshop_Lightroom_CC_logo.svg.png?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=thumbnail"     alt="PUT IMAGE: lightroom.png (assets/tools/)">
+      <img class="tool" style="--x:90.6cqw;--y:27.45cqw;--s:5.4cqw;--d:.7s"   src="https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0c/Blender_logo_no_text.svg/960px-Blender_logo_no_text.svg.png?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=thumbnail&_=20210507122249"        alt="PUT IMAGE: blender.png (assets/tools/)">
+      <img class="tool" style="--x:78.65cqw;--y:33.25cqw;--s:4.4cqw;--d:1.05s" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cb/Adobe_After_Effects_CC_icon.svg/960px-Adobe_After_Effects_CC_icon.svg.png?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=thumbnail" alt="PUT IMAGE: after-effects.png (assets/tools/)">
+      <img class="tool" style="--x:84.8cqw;--y:33.25cqw;--s:4.4cqw;--d:1.4s"  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSG5kEGO0f2BMnow4Wqrzv-oIZT8Umoao5Q9Ero7l8w1Q&s=10.png"       alt="PUT IMAGE: premiere.png (assets/tools/)">
+      <img class="tool" style="--x:91.3cqw;--y:33cqw;--s:4.7cqw;--d:1.75s"    src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/fl-studio.png"      alt="PUT IMAGE: fl-studio.png (assets/tools/)">
+      <img class="tool" style="--x:81.7cqw;--y:39.4cqw;--s:4.35cqw;--d:2.1s"  src="https://static.vecteezy.com/system/resources/thumbnails/032/329/175/small/canva-icon-logo-symbol-free-png.png"          alt="PUT IMAGE: canva.png (assets/tools/)">
+      <img class="tool" style="--x:88.5cqw;--y:39.6cqw;--s:3.7cqw;--d:2.45s"  src="https://upload.wikimedia.org/wikipedia/commons/0/0c/Capcut-icon.png?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original"         alt="PUT IMAGE: capcut.png (assets/tools/)">
+    </div>
+  </div>
+
+  <a class="logo logo-about" href="#home" aria-label="Back to home">
+    <img class="fill" src="https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/8deee5258524495.6af9b373b55a8.png" alt="PUT IMAGE: logo.png (assets/img/)">
+  </a>
+</section>
+
+<!-- ============================== WORKS ============================= -->
+<section id="works" class="slide works">
+  <svg class="works-title" viewBox="0 0 865 500" aria-hidden="true">
+    <text class="svgtxt" x="0" y="187" font-size="255" textLength="865" lengthAdjust="spacingAndGlyphs">WORKS</text>
+  </svg>
+
+  <!-- 2D illustration works - loops horizontally. Add / remove <figure> items freely. -->
+  <div class="marquee" aria-label="2D illustration works">
+    <div class="track">
+      <!-- PUT IMAGES: assets/works/work-01.jpg ... work-08.jpg -->
+      <figure class="work"><img class="fill cover" src="https://cdnb.artstation.com/p/assets/images/images/079/750/695/large/jairus-caraan-7eleven.jpg?1725721008" alt="PUT IMAGE: work-01.jpg (assets/works/)"></figure>
+      <figure class="work"><img class="fill cover" src="https://cdna.artstation.com/p/assets/images/images/048/752/064/large/jairus-caraan-futur-office.jpg?1650857317" alt="PUT IMAGE: work-02.jpg (assets/works/)"></figure>
+      <figure class="work"><img class="fill cover" src="https://cdna.artstation.com/p/assets/images/images/048/219/472/large/jairus-caraan-wllppr.jpg?1649493046" alt="PUT IMAGE: work-03.jpg (assets/works/)"></figure>
+      <figure class="work"><img class="fill cover" src="https://cdna.artstation.com/p/assets/images/images/048/218/326/large/jairus-caraan-snakku-1.jpg?1649488756" alt="PUT IMAGE: work-04.jpg (assets/works/)"></figure>
+      <figure class="work"><img class="fill cover" src="https://cdna.artstation.com/p/assets/images/images/042/581/782/large/jairus-caraan-subway-with-skater.jpg?1634890709" alt="PUT IMAGE: work-05.jpg (assets/works/)"></figure>
+      <figure class="work"><img class="fill cover" src="https://cdnb.artstation.com/p/assets/images/images/079/750/821/large/jairus-caraan-jru-scenery.jpg?1725721462" alt="PUT IMAGE: work-06.jpg (assets/works/)"></figure>
+      <figure class="work"><img class="fill cover" src="https://cdna.artstation.com/p/assets/images/images/079/750/886/large/jairus-caraan-spiderverse-study-enhanced.jpg?1725721349" alt="PUT IMAGE: work-07.jpg (assets/works/)"></figure>
+      <figure class="work"><img class="fill cover" src="https://cdnb.artstation.com/p/assets/images/images/088/796/403/large/jairus-caraan-aerial-shot-city.jpg?1749192800" alt="PUT IMAGE: work-08.jpg (assets/works/)"></figure>
+    </div>
+  </div>
+
+  <a class="logo logo-works" href="#home" aria-label="Back to home">
+    <img class="fill" src="https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/8deee5258524495.6af9b373b55a8.png" alt="PUT IMAGE: logo.png (assets/img/)">
+  </a>
+</section>
+
+<!-- ============================= PROJECTS =========================== -->
+<section id="projects" class="slide projects">
+  <!-- Video clips. Change the TITLE and DESCRIPTION text inside each card. -->
+  <div class="p-grid">
+
+    <article class="p-card reveal">
+      <div class="p-media" data-path="assets/videos/project-01.mp4">
+        <!-- PUT VIDEO: assets/videos/project-01.mp4  |  POSTER: assets/thumbs/project-01.jpg -->
+        <video controls muted loop playsinline preload="metadata" poster="">
+          <source src="https://cdn.artstation.com/p/video_sources/003/569/739/557c63934b8ce019b77af238e2597494-caraan301da-p2-2d-rigging-humanoid-trim.mp4" type="video/mp4">
+        </video>
+      </div>
+      <h3 class="p-title">CHARACTER UNITY
+      </h3>
+      <p class="p-desc">Own cyborg character using sprite sheet.</p>
+    </article>
+
+    <article class="p-card reveal">
+      <div class="p-media" data-path="assets/videos/project-02.mp4">
+        <video controls muted loop playsinline preload="metadata" poster="assets/thumbs/project-02.jpg">
+          <source src="https://cdn.artstation.com/p/video_sources/003/569/715/e03078c7605dcd199cb0c33e8d78225e-caraan301da-productx-poco.mp4" type="video/mp4">
+        </video>
+      </div>
+      <h3 class="p-title">POCO F7 PRO AD</h3>
+      <p class="p-desc">Product advertisement final project for Xiaomi.</p>
+    </article>
+
+    <article class="p-card reveal">
+      <div class="p-media" data-path="assets/videos/project-03.mp4">
+        <video controls muted loop playsinline preload="metadata" poster="assets/thumbs/project-03.jpg">
+          <source src="https://cdn.artstation.com/p/video_sources/003/569/735/b4864a4a071d2e4a9b6c2ddd929d08e4-cgi-productx-caraan-1.mp4" type="video/mp4">
+        </video>
+      </div>
+      <h3 class="p-title">NIKE SB DUNK AD</h3>
+      <p class="p-desc">Nike SB Dunk, midnight blue color way.</p>
+    </article>
+
+    
+
+  </div>
+
+  <svg class="projects-title" viewBox="0 0 1182 190" aria-hidden="true">
+    <text class="svgtxt" x="0" y="188" font-size="255" textLength="1182" lengthAdjust="spacingAndGlyphs">PROJECTS</text>
+  </svg>
+
+  <a class="logo logo-projects" href="#home" aria-label="Back to home">
+    <img class="fill" src="https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/8deee5258524495.6af9b373b55a8.png" alt="PUT IMAGE: logo.png (assets/img/)">
+  </a>
+</section>
+
+<!-- ============================= CONTACTS =========================== -->
+<section id="contacts" class="slide contacts paper">
+  <div class="c-band"></div>
+
+  <div class="c-col c-email reveal">
+    <h2>EMAIL</h2>
+    <a class="c-link" href="mailto:migueljairus.caraan@my.jru.edu">@migueljairus.caraan@my.jru.edu</a>
+    <a class="c-link" href="mailto:adobenijai@gmail.com">@adobenijai@gmail.com</a>
+  </div>
+
+  <div class="c-col c-art reveal">
+    <h2>ARTSTATION</h2>
+    <a class="c-link" href="https://www.artstation.com/jairuscaraan" target="_blank" rel="noopener noreferrer">https://www.artstation.com/jairuscaraan</a>
+    <a class="qr" href="https://www.artstation.com/jairuscaraan" target="_blank" rel="noopener noreferrer" aria-label="Open ArtStation">
+      <!-- PUT IMAGE: assets/qr/artstation.png -->
+      <img class="fill" src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/94c291258524495.6af9b4e5430f0.png" alt="PUT IMAGE: artstation.png (assets/qr/)">
+    </a>
+  </div>
+
+  <div class="c-col c-beh reveal">
+    <h2>BEHANCE</h2>
+    <a class="c-link" href="https://www.behance.net/jairuscaraan" target="_blank" rel="noopener noreferrer">https://www.behance.net/jairuscaraan</a>
+    <a class="qr" href="https://www.behance.net/jairuscaraan" target="_blank" rel="noopener noreferrer" aria-label="Open Behance">
+      <!-- PUT IMAGE: assets/qr/behance.png -->
+      <img class="fill" src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/130b03258524495.6af9b4e5438a9.png" alt="PUT IMAGE: behance.png (assets/qr/)">
+    </a>
+  </div>
+
+  <svg class="contacts-title" viewBox="0 0 1955 310" aria-hidden="true">
+    <text class="svgtxt" x="0" y="304" font-size="415" textLength="1955" lengthAdjust="spacingAndGlyphs">CONTACTS</text>
+  </svg>
+
+  <a class="logo logo-contacts" href="#home" aria-label="Back to home">
+    <img class="fill" src="https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/8deee5258524495.6af9b373b55a8.png" alt="PUT IMAGE: logo.png (assets/img/)">
+  </a>
+</section>
+
+<script>
+/* Portfolio interactions: looping works strip, image placeholders, reveal animations */
+(function () {
+  'use strict';
+
+  /* 1) Loop the works strip: duplicate the items so the CSS scroll has no gap */
+  var track = document.querySelector('.track');
+  if (track) {
+    Array.prototype.slice.call(track.children).forEach(function (item) {
+      var clone = item.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      track.appendChild(clone);
+    });
+  }
+
+  /* 2) Placeholders: if an image file is missing, show a dashed box with the expected path */
+  function toPlaceholder(img) {
+    if (!img.parentNode) return;
+    var box = document.createElement('div');
+    box.className = img.className + ' ph';
+    var style = img.getAttribute('style');
+    if (style) box.setAttribute('style', style);
+    box.setAttribute('role', 'img');
+    var src = img.getAttribute('src') || '';
+    box.setAttribute('aria-label', img.alt || src);
+    box.title = src;
+    box.textContent = 'PUT IMAGE: ' + src;
+    img.parentNode.replaceChild(box, img);
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('img'), function (img) {
+    if (img.complete && img.naturalWidth === 0) {
+      toPlaceholder(img);
+    } else {
+      img.addEventListener('error', function () { toPlaceholder(img); }, { once: true });
+    }
+  });
+
+  /* 3) Missing video label */
+  Array.prototype.forEach.call(document.querySelectorAll('.p-media video'), function (v) {
+    var s = v.querySelector('source');
+    if (s) s.addEventListener('error', function () { v.parentNode.classList.add('missing'); });
+  });
+
+  /* 4) Reveal on scroll */
+  var items = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.15 });
+    Array.prototype.forEach.call(items, function (el, i) {
+      el.style.transitionDelay = (i % 3) * 0.08 + 's';
+      io.observe(el);
+    });
+  } else {
+    Array.prototype.forEach.call(items, function (el) { el.classList.add('in'); });
+  }
+
+  /* 5) Only one project video plays at a time */
+  var videos = document.querySelectorAll('.p-media video');
+  Array.prototype.forEach.call(videos, function (v) {
+    v.addEventListener('play', function () {
+      Array.prototype.forEach.call(videos, function (o) { if (o !== v) o.pause(); });
+    });
+  });
+})();
+
+</script>
+</body>
+</html>
